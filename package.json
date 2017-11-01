@@ -1,0 +1,27 @@
+{
+  "name": "playground_node_api",
+  "version": "1.0.0",
+  "description": "Sample project to play with Node and REST",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bresan/playgroung_node_api.git"
+  },
+  "author": "Rodrigo Bresan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bresan/playgroung_node_api/issues"
+  },
+  "homepage": "https://github.com/bresan/playgroung_node_api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
