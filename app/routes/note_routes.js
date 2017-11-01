@@ -45,19 +45,36 @@ module.exports = function (app, db) {
         });
     });
 
+    function fieldsAreValid(req) {
+        if (req.body.body == null || req.body.body === '') {
+            return false;
+        }
+
+        if (req.body.title == null || req.body.title === '') {
+            return false;
+        }
+
+        return true;
+    }
+
     // UPDATE routes
     app.put('/notes/:id', (req, res) => {
         const id = req.params.id;
 
         const details = {'_id': new ObjectId(id)};
 
-        const note = {text: req.body.body, title: req.body.title};
-        db.collection('notes').update(details, note, (err, result) => {
-            if (err) {
-                res.send({'error': 'An error has occurred'});
-            } else {
-                res.send(note);
-            }
-        });
+        if (fieldsAreValid(req)) {
+            const note = {text: req.body.body, title: req.body.title};
+
+            db.collection('notes').update(details, note, (err, result) => {
+                if (err) {
+                    res.send({'error': 'An error has occurred'});
+                } else {
+                    res.send(note);
+                }
+            });
+        } else {
+            res.send({'error': 'Invalid input'});
+        }
     });
 };
