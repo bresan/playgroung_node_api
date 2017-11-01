@@ -2,9 +2,9 @@
   "name": "playground_node_api",
   "version": "1.0.0",
   "description": "Sample project to play with Node and REST",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
