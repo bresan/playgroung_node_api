@@ -2,6 +2,7 @@ var ObjectId = require('mongodb').ObjectID;
 
 module.exports = function (app, db) {
 
+    // GET notes
     app.get('/notes/:id', (req, res) => {
         const id = req.params.id;
 
@@ -16,6 +17,7 @@ module.exports = function (app, db) {
         });
     });
 
+    // POST notes
     app.post('/notes', (req, res) => {
         const note = {text: req.body.body, title: req.body.title};
 
@@ -25,6 +27,21 @@ module.exports = function (app, db) {
             } else {
                 res.send(result.ops[0]);
             }
+        });
+    });
+
+    // DELETE notes
+    app.delete('/notes/:id', (req, res) => {
+        const id = req.params.id;
+
+        const details = { '_id': new ObjectId(id)};
+
+        db.collection('notes').remove(details, (err, item) => {
+           if (err) {
+               res.send({ 'error': 'An error has occurred'});
+           } else {
+               res.send('Note ' + id + ' deleted');
+           }
         });
     });
 };
